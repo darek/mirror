@@ -12,6 +12,9 @@ public class Character : MonoBehaviour {
 	public bool canDoubleJump = false;
 	public bool canCrawl = false;
 
+	public bool activePlayer = false;
+	public GameObject mirror;
+
 
 	// Use this for initialization
 	void Start () {
@@ -20,16 +23,18 @@ public class Character : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(!activePlayer)
+			transform.position = new Vector2(mirror.transform.position.x, -mirror.transform.position.y);
+
 	}
 
 	void FixedUpdate(){
 		float hForce = Input.GetAxis("Horizontal");
 
 		Debug.Log(hForce);
-
-			rigidbody2D.velocity = new Vector2( hForce * maxSpeed, rigidbody2D.velocity.y);
-
+		if (activePlayer) {
+			rigidbody2D.velocity = new Vector2 (hForce * maxSpeed, rigidbody2D.velocity.y);
+		} 
 
 
 	}
