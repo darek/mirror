@@ -51,11 +51,14 @@ public class CharacterJump : MonoBehaviour {
 		if((grounded || (!secondJump && canSecondJump && active)) && jumping){
 			if(!grounded){
 				secondJump = true;
+				rigidbody2D.AddForce(new Vector2(0f,(isMirrored ? -1 : 1 ) * jumpForce*1.5f));
+			}else{
+				rigidbody2D.AddForce(new Vector2(0f,(isMirrored ? -1 : 1 ) * jumpForce));
 			}
 			animator.SetBool("Grounded",false);
 			animator.SetTrigger("Jump");
 			//rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x,0f); // zerujemy predkosc wysokosci
-			rigidbody2D.AddForce(new Vector2(0f,(isMirrored ? -1 : 1 ) * jumpForce));
+
 		}
 		jumping = false;
 
