@@ -3,8 +3,8 @@ using System.Collections;
 
 public class IrregularCreator : MonoBehaviour {
 	public GameObject[] objects;
-	public float spawnMin = 1f;
-	public float spawnMax = 2f;
+	public float spawnMin = 0.5f;
+	public float spawnMax = 3f;
 
 	void Start(){
 		Spawn();
