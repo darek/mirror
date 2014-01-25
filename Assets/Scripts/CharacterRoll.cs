@@ -32,7 +32,7 @@ public class CharacterRoll : MonoBehaviour {
 
 		if (isRolling && Mathf.Abs(hForce) > 0) {
 			anim.SetTrigger ("Roll");
-			boxCollider.size = new Vector2(boxCollider.size.x, boxCollider.size.y-10);
+			//boxCollider.size = new Vector2(boxCollider.size.x, boxCollider.size.y-10);
 		}
 		isRolling = false;
 	}
