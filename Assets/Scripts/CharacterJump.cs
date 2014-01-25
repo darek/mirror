@@ -54,7 +54,7 @@ public class CharacterJump : MonoBehaviour {
 			}
 			animator.SetBool("Grounded",false);
 			animator.SetTrigger("Jump");
-			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x,0f); // zerujemy predkosc wysokosci
+			//rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x,0f); // zerujemy predkosc wysokosci
 			rigidbody2D.AddForce(new Vector2(0f,(isMirrored ? -1 : 1 ) * jumpForce));
 		}
 		jumping = false;
