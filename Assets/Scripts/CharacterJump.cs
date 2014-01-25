@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CharackterJump : MonoBehaviour {
+public class CharacterJump : MonoBehaviour {
 
 	public bool canDoubleJump = false; // postac potrafi wykonac double jump
 	public float jumpForce = 7f;
@@ -21,7 +21,7 @@ public class CharackterJump : MonoBehaviour {
 	void Update () {
 		grounded = Physics2D.Linecast(transform.position, groundChecker.position, 1 << LayerMask.NameToLayer("Ground"));
 
-		if(grounded && Input.GetButton("Jump") || canDoubleJump){
+		if(Input.GetButton("Jump") && (grounded || canDoubleJump)){
 			jumping = true;
 		}
 
@@ -30,10 +30,14 @@ public class CharackterJump : MonoBehaviour {
 	void FixedUpdate(){
 		if(jumping){
 			animator.SetTrigger("Jump");
+			Debug.Log ("SKACZE!!");
 			rigidbody2D.AddForce(new Vector2(0f,jumpForce));
-			if(!canDoubleJump || secondJump){
-				jumping = false;
-			}
+			//if(!canDoubleJump || secondJump){
+			//	jumping = false;
+			//}
+
 		}
+		jumping = false;
+
 	}
 }

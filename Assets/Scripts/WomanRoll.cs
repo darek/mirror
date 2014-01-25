@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CharacterRoll : MonoBehaviour {
+public class WomanRoll : MonoBehaviour {
 
 	private Animator anim;					// Reference to the player's animator component.
 	private BoxCollider2D boxCollider;
