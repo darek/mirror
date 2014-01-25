@@ -11,6 +11,7 @@ public class CharacterJump : MonoBehaviour {
 
 	public bool canSecondJump = false; // postac potrafi wykonac double jump
 	public float jumpForce = 20f;
+	public bool isMirrored = false;
 
 	private bool jumping = false; // postac akurat skacze
 	private bool secondJump = false;
@@ -43,7 +44,7 @@ public class CharacterJump : MonoBehaviour {
 			Debug.Log ("skok!");
 			animator.SetTrigger("Jump");
 			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x,0f); // zerujemy predkosc wysokosci
-			rigidbody2D.AddForce(new Vector2(0f,jumpForce));
+			rigidbody2D.AddForce(new Vector2(0f,(isMirrored ? -1 : 1 ) * jumpForce));
 		}
 		jumping = false;
 
