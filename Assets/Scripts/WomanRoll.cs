@@ -20,7 +20,8 @@ public class WomanRoll : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown ("Jump")) {
+		if (Input.GetButtonDown("Roll")) {
+			Debug.Log ("DOWN");
 			isRolling = true;
 		}
 	}
