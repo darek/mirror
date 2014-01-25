@@ -12,6 +12,9 @@ public class CharacterJump : MonoBehaviour {
 	private Transform groundChecker; // obiekt na ktorym sprawdzamy pozycje postaci wzgledem podloza
 	private Animator animator;
 
+	public GameObject mirror;
+
+
 	// Use this for initialization
 	void Awake () {
 		groundChecker = transform.Find("groundChecker");
@@ -31,7 +34,7 @@ public class CharacterJump : MonoBehaviour {
 		if(jumping){
 			animator.SetTrigger("Jump");
 			Debug.Log ("SKACZE!!");
-			rigidbody2D.AddForce(new Vector2(0f,jumpForce));
+			rigidbody2D.AddForce(new Vector2(0f,-jumpForce));
 			//if(!canDoubleJump || secondJump){
 			//	jumping = false;
 			//}
