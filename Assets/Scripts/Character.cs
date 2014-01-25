@@ -6,7 +6,7 @@ public class Character : MonoBehaviour {
 	[HideInInspector]
 	public bool activeCharacter = false;
 	
-	public float maxSpeed = 5f;
+	public float maxSpeed = 5.5f;
 
 	public bool activePlayer = false;
 	public GameObject mirror;
@@ -29,7 +29,7 @@ public class Character : MonoBehaviour {
 		float hForce = Input.GetAxis("Horizontal");
 		if (activePlayer && rigidbody2D.velocity.x>=0) {
 			//rigidbody2D.velocity = new Vector2 (hForce * maxSpeed, rigidbody2D.velocity.y);
-			rigidbody2D.velocity = new Vector2 (1.2f,rigidbody2D.velocity.y);
+			rigidbody2D.velocity = new Vector2 (maxSpeed,rigidbody2D.velocity.y);
 		} 
 	}
 
