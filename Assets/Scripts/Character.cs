@@ -30,7 +30,6 @@ public class Character : MonoBehaviour {
 
 	void FixedUpdate(){
 		float hForce = Input.GetAxis("Horizontal");
-
 		Debug.Log(hForce);
 		if (activePlayer) {
 			rigidbody2D.velocity = new Vector2 (hForce * maxSpeed, rigidbody2D.velocity.y);
