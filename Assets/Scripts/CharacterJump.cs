@@ -43,7 +43,8 @@ public class CharacterJump : MonoBehaviour {
 		// sprawdzamy czy gracz jest aktualnie na ziemi
 
 		if(endJumping){
-			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x,0f);
+			float velY = rigidbody2D.velocity.y;
+			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x,velY>0?Mathf.Sqrt(rigidbody2D.velocity.y):velY);
 			endJumping = false;
 		}
 
