@@ -14,7 +14,7 @@ public class CreatorScript : MonoBehaviour {
 
 		for(int i=0; i<objectNTimesRepeated; ++i){
 			current = CreateNextHorizontal(current);
-			CreateMirrored(current);
+			CreatorScript.CreateMirrored(current);
 		}
 
 		theLastOne = current;
@@ -26,7 +26,7 @@ public class CreatorScript : MonoBehaviour {
 		return newlyCreated;
 	}
 
-	private GameObject CreateMirrored(GameObject toMirror){
+	public static GameObject CreateMirrored(GameObject toMirror){
 		Vector3 mirrroredPosition = new Vector3(toMirror.transform.position.x, -toMirror.transform.position.y, toMirror.transform.position.z);
 		GameObject mirrored = cloneGameObject(toMirror, mirrroredPosition);
 		mirrored.transform.localScale = new Vector3(mirrored.transform.localScale.x, -1f, mirrored.transform.localScale.z);
@@ -47,13 +47,13 @@ public class CreatorScript : MonoBehaviour {
 
 			GameObject newlyCreated = cloneGameObject(chooseRandomPatternObject(), newlyCreatedPosition);
 
-			CreateMirrored(newlyCreated);
+			CreatorScript.CreateMirrored(newlyCreated);
 
 			theLastOne = newlyCreated;
 		}
 	}
 
-	private GameObject cloneGameObject(GameObject gameObject, Vector3 position){
+	private static GameObject cloneGameObject(GameObject gameObject, Vector3 position){
 		GameObject newlyCreated = Instantiate(gameObject, position, Quaternion.identity) as GameObject;
 		newlyCreated.GetComponent<BackgroundElementScript>().canBeDeleted = true;
 		return newlyCreated;

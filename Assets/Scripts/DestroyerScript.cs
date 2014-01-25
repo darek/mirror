@@ -15,17 +15,24 @@ public class DestroyerScript: MonoBehaviour {
 	}
 	
 	void OnTriggerEnter2D(Collider2D other){
-		if(creators.ContainsKey(other.tag)){
+		if (creators.ContainsKey (other.tag)) {
 			Vector3 position = other.gameObject.transform.position;
-			
-			GameObject creator = creators[other.tag];
-			creator.GetComponent<CreatorScript> ().create(position);
-			
+
+			GameObject creator = creators [other.tag];
+			creator.GetComponent<CreatorScript> ().create (position);
+
 			BackgroundElementScript script = other.gameObject.GetComponent<BackgroundElementScript> ();
-			
-			if(script.canBeDeleted){
-				Destroy(script.mirrored);
-				Destroy(other.gameObject);
+
+			if (script.canBeDeleted) {
+					Destroy (script.mirrored);
+					Destroy (other.gameObject);
+			}
+		} else if (other.tag == "backgroundElement") {
+			BackgroundElementScript script = other.gameObject.GetComponent<BackgroundElementScript> ();
+
+			if(script.canBeDeleted) {
+				Destroy (script.mirrored);
+				Destroy (other.gameObject);
 			}
 		}
 	}
