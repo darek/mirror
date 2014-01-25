@@ -25,32 +25,31 @@ public class CharacterJump : MonoBehaviour {
 	}
 
 	void Update () {
+		grounded = Physics2D.Linecast(transform.position, groundChecker.position, 1 << LayerMask.NameToLayer("Ground"));
+		animator.SetBool("Grounded",grounded);
+
 		if(Input.GetButtonDown("Jump")){
 			jumping = true;
+		}
+
+		// jesli jest na ziemi to zerujemy podwojny skok
+		if(grounded){
+			secondJump = false;
 		}
 	}
 
 	void FixedUpdate(){
 		// sprawdzamy czy gracz jest aktualnie na ziemi
-		grounded = Physics2D.Linecast(transform.position, groundChecker.position, 1 << LayerMask.NameToLayer("Ground"));
-		animator.SetBool("Grounded",grounded);
+
 
 		if((grounded || (!secondJump && canSecondJump)) && jumping){
-			Debug.Log("grounded: "+grounded);
 			if(!grounded){
-				Debug.Log ("Drugi skok!");
 				secondJump = true;
 			}
-			Debug.Log ("skok!");
+			animator.SetBool("Grounded",false);
 			animator.SetTrigger("Jump");
 			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x,0f); // zerujemy predkosc wysokosci
 			rigidbody2D.AddForce(new Vector2(0f,(isMirrored ? -1 : 1 ) * jumpForce));
-		}
-		jumping = false;
-
-		// jesli jest na ziemi to zerujemy podwojny skok
-		if(grounded){
-			secondJump = false;
 		}
 		jumping = false;
 

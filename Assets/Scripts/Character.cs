@@ -5,12 +5,8 @@ public class Character : MonoBehaviour {
 
 	[HideInInspector]
 	public bool activeCharacter = false;
-
-	public int lifeCount = 3;
+	
 	public float maxSpeed = 5f;
-
-	public bool canDoubleJump = false;
-	public bool canCrawl = false;
 
 	public bool activePlayer = false;
 	public GameObject mirror;
@@ -23,8 +19,9 @@ public class Character : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(!activePlayer)
+		if(!activePlayer){
 			transform.position = new Vector2(mirror.transform.position.x, -mirror.transform.position.y);
+		}
 
 	}
 
@@ -35,15 +32,5 @@ public class Character : MonoBehaviour {
 			rigidbody2D.velocity = new Vector2 (1.2f,rigidbody2D.velocity.y);
 		} 
 	}
-
-	void DecreaseLifeCount(){
-		lifeCount-=1;
-		if(lifeCount<=0){
-			// todo: UMIERASZ
-		}
-	}
-	
-
-
 
 }

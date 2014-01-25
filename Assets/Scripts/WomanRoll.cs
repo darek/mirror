@@ -31,7 +31,6 @@ public class WomanRoll : MonoBehaviour {
 
 	void FixedUpdate(){
 		float hForce = Input.GetAxis("Horizontal");
-		Debug.Log (hForce);
 		anim.SetFloat("Speed",  Mathf.Abs(hForce));
 
 		Debug.Log ("active: " + active);
