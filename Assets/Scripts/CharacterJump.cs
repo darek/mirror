@@ -14,6 +14,7 @@ public class CharacterJump : MonoBehaviour {
 	public bool isMirrored = false;
 
 	private bool jumping = false; // postac akurat skacze
+	private bool endJumping = false;
 	private bool secondJump = false;
 	private bool grounded = true; // postac akurat jest na ziemi
 	private Transform groundChecker; // obiekt na ktorym sprawdzamy pozycje postaci wzgledem podloza
@@ -33,16 +34,18 @@ public class CharacterJump : MonoBehaviour {
 		if(Input.GetButtonDown("Jump")){
 			jumping = true;
 		}
-
-		// jesli jest na ziemi to zerujemy podwojny skok
-		if(grounded){
-			secondJump = false;
+		if(Input.GetButtonUp ("Jump")){
+			endJumping = true;
 		}
 	}
 
 	void FixedUpdate(){
 		// sprawdzamy czy gracz jest aktualnie na ziemi
 
+		if(endJumping){
+			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x,0f);
+			endJumping = false;
+		}
 
 		if((grounded || (!secondJump && canSecondJump && active)) && jumping){
 			if(!grounded){
@@ -54,6 +57,12 @@ public class CharacterJump : MonoBehaviour {
 			rigidbody2D.AddForce(new Vector2(0f,(isMirrored ? -1 : 1 ) * jumpForce));
 		}
 		jumping = false;
+
+		// jesli jest na ziemi to zerujemy podwojny skok
+		if(grounded){
+			secondJump = false;
+			animator.SetBool("Recoil",false);
+		}
 
 	}
 }

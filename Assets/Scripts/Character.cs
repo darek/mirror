@@ -10,11 +10,11 @@ public class Character : MonoBehaviour {
 
 	public bool activePlayer = false;
 	public GameObject mirror;
-
+	public Animator animator;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Awake () {
+		animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -27,7 +27,7 @@ public class Character : MonoBehaviour {
 
 	void FixedUpdate(){
 		float hForce = Input.GetAxis("Horizontal");
-		if (activePlayer) {
+		if (activePlayer && rigidbody2D.velocity.x>=0) {
 			//rigidbody2D.velocity = new Vector2 (hForce * maxSpeed, rigidbody2D.velocity.y);
 			rigidbody2D.velocity = new Vector2 (1.2f,rigidbody2D.velocity.y);
 		} 
