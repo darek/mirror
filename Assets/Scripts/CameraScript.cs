@@ -7,6 +7,8 @@ public class CameraScript : MonoBehaviour {
 
 	void Start() {
 		rigidbody2D.velocity = new Vector2 (cameraSpeed, 0);
+
+
 	}
 
 }

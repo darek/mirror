@@ -18,13 +18,15 @@ public class CharacterJump : MonoBehaviour {
 	private bool grounded = true; // postac akurat jest na ziemi
 	private Transform groundChecker; // obiekt na ktorym sprawdzamy pozycje postaci wzgledem podloza
 	private Animator animator;
-	
+	private bool active = false;
+
 	void Awake() {
 		groundChecker = transform.Find("groundChecker");
 		animator = GetComponent<Animator>();
 	}
 
 	void Update () {
+		active = GetComponent<Character> ().activePlayer;
 		grounded = Physics2D.Linecast(transform.position, groundChecker.position, 1 << LayerMask.NameToLayer("Ground"));
 		animator.SetBool("Grounded",grounded);
 
@@ -42,7 +44,7 @@ public class CharacterJump : MonoBehaviour {
 		// sprawdzamy czy gracz jest aktualnie na ziemi
 
 
-		if((grounded || (!secondJump && canSecondJump)) && jumping){
+		if((grounded || (!secondJump && canSecondJump && active)) && jumping){
 			if(!grounded){
 				secondJump = true;
 			}

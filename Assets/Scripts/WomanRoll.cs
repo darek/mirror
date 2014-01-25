@@ -13,7 +13,6 @@ public class WomanRoll : MonoBehaviour {
 	{
 		anim = GetComponent<Animator>();
 		boxCollider = GetComponent<BoxCollider2D>();
-		active = GetComponent<Character> ().activePlayer;
 	}	
 
 	// Use this for initialization
@@ -23,6 +22,7 @@ public class WomanRoll : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		active = GetComponent<Character> ().activePlayer;
 		if (Input.GetButtonDown("Roll")) {
 			Debug.Log ("DOWN");
 			isRolling = true;
@@ -33,7 +33,6 @@ public class WomanRoll : MonoBehaviour {
 		float hForce = Input.GetAxis("Horizontal");
 		anim.SetFloat("Speed",  Mathf.Abs(hForce));
 
-		Debug.Log ("active: " + active);
 		if (active && isRolling) {
 			anim.SetTrigger ("Roll");
 			//boxCollider.size = new Vector2(boxCollider.size.x, boxCollider.size.y-10);
