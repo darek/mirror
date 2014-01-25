@@ -9,4 +9,8 @@ public class ParalaxeScript: MonoBehaviour {
 		rigidbody2D.velocity = new Vector2 (speedX, 0);
 	}
 
+	void Update() {
+		rigidbody2D.velocity = new Vector2 (speedX, 0);
+	}
+
 }
