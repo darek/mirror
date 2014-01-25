@@ -7,10 +7,13 @@ public class WomanRoll : MonoBehaviour {
 	private BoxCollider2D boxCollider;
 	private bool isRolling = false;
 
+	private bool active = false;
+
 	void Awake()
 	{
 		anim = GetComponent<Animator>();
 		boxCollider = GetComponent<BoxCollider2D>();
+		active = GetComponent<Character> ().activePlayer;
 	}	
 
 	// Use this for initialization
@@ -31,7 +34,8 @@ public class WomanRoll : MonoBehaviour {
 		Debug.Log (hForce);
 		anim.SetFloat("Speed",  Mathf.Abs(hForce));
 
-		if (isRolling && Mathf.Abs(hForce) > 0) {
+		Debug.Log ("active: " + active);
+		if (active && isRolling && Mathf.Abs(hForce) > 0) {
 			anim.SetTrigger ("Roll");
 			//boxCollider.size = new Vector2(boxCollider.size.x, boxCollider.size.y-10);
 		}
