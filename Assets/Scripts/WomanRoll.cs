@@ -35,7 +35,7 @@ public class WomanRoll : MonoBehaviour {
 		anim.SetFloat("Speed",  Mathf.Abs(hForce));
 
 		Debug.Log ("active: " + active);
-		if (active && isRolling && Mathf.Abs(hForce) > 0) {
+		if (active && isRolling) {
 			anim.SetTrigger ("Roll");
 			//boxCollider.size = new Vector2(boxCollider.size.x, boxCollider.size.y-10);
 		}

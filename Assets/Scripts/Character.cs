@@ -31,7 +31,8 @@ public class Character : MonoBehaviour {
 	void FixedUpdate(){
 		float hForce = Input.GetAxis("Horizontal");
 		if (activePlayer) {
-			rigidbody2D.velocity = new Vector2 (hForce * maxSpeed, rigidbody2D.velocity.y);
+			//rigidbody2D.velocity = new Vector2 (hForce * maxSpeed, rigidbody2D.velocity.y);
+			rigidbody2D.velocity = new Vector2 (1.2f,rigidbody2D.velocity.y);
 		} 
 	}
 
