@@ -13,7 +13,8 @@ public class IrregularCreator : MonoBehaviour {
 	void Spawn(){
 		GameObject randomObj = objects[Random.Range(0, objects.Length)];
 		Vector3 newPosition = new Vector3(transform.position.x, randomObj.transform.position.y, randomObj.transform.position.z);
-		Instantiate(randomObj, newPosition, Quaternion.identity);
+		GameObject newObject = Instantiate(randomObj, newPosition, Quaternion.identity) as GameObject;
+		CreatorScript.CreateMirrored (newObject);
 		Invoke("Spawn", Random.Range(spawnMin, spawnMax));
 	}
 }
