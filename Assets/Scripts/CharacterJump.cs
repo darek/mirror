@@ -21,6 +21,8 @@ public class CharacterJump : MonoBehaviour {
 	private Animator animator;
 	private bool active = false;
 
+	public AudioClip jumpSound;
+
 	void Awake() {
 		groundChecker = transform.Find("groundChecker");
 		animator = GetComponent<Animator>();
@@ -57,6 +59,8 @@ public class CharacterJump : MonoBehaviour {
 			}
 			animator.SetBool("Grounded",false);
 			animator.SetTrigger("Jump");
+
+			AudioSource.PlayClipAtPoint(jumpSound ,transform.position);
 			//rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x,0f); // zerujemy predkosc wysokosci
 
 		}
