@@ -9,12 +9,17 @@ public class GameController : MonoBehaviour {
 	public GameObject startPoint;
 	public GameObject endPoint;
 
+	// index 0 to serce najbardziej na lewo
+	public GameObject[] hearts;
+
 	private bool isManActive = true;
 	private Matrix4x4 mat;
 
 	private float startPointX;
 	private float wholeDistance;
 	private float cameraWidth;
+
+	private int heartsLeft = 3;
 
 	// Use this for initialization
 	void Start () {
@@ -49,6 +54,18 @@ public class GameController : MonoBehaviour {
 		}
 
 		refreshHUDBar ();
+	}
+
+	public void decreaseHeart(){
+		Debug.Log ("usuwamy serduszko");
+		if (heartsLeft == 1) {
+			startPoint.GetComponent<GameLose>().lose();
+			return;
+		}
+
+		GameObject toDestroy = hearts[heartsLeft - 1];
+		Destroy (toDestroy);
+		heartsLeft -= 1;
 	}
 
 	private void refreshHUDBar(){
