@@ -12,6 +12,8 @@ public class CreatorScript : MonoBehaviour {
 	void Start(){
 		GameObject current = theLastOne;
 
+		CreateMirrored (current);
+
 		for(int i=0; i<objectNTimesRepeated; ++i){
 			current = CreateNextHorizontal(current);
 			CreatorScript.CreateMirrored(current);
@@ -27,8 +29,16 @@ public class CreatorScript : MonoBehaviour {
 	}
 
 	public static GameObject CreateMirrored(GameObject toMirror){
+		BackgroundElementScript backgroundElement = toMirror.GetComponent<BackgroundElementScript> ();
+
+		GameObject patternObject = null;
+		if (backgroundElement.mirrored)
+				patternObject = backgroundElement.mirrored;
+			else
+				patternObject = toMirror;
+
 		Vector3 mirrroredPosition = new Vector3(toMirror.transform.position.x, -toMirror.transform.position.y, toMirror.transform.position.z);
-		GameObject mirrored = cloneGameObject(toMirror, mirrroredPosition);
+		GameObject mirrored = cloneGameObject(patternObject, mirrroredPosition);
 		mirrored.transform.localScale = new Vector3(mirrored.transform.localScale.x, -1f, mirrored.transform.localScale.z);
 		toMirror.GetComponent<BackgroundElementScript> ().mirrored = mirrored;
 		return mirrored;
