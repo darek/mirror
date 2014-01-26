@@ -18,8 +18,9 @@ public class GameController : MonoBehaviour {
 	private float startPointX;
 	private float wholeDistance;
 	private float cameraWidth;
-
+	
 	private int heartsLeft = 3;
+	public AudioClip changeWorlds;
 
 	// Use this for initialization
 	void Start () {
@@ -41,6 +42,8 @@ public class GameController : MonoBehaviour {
 	void Update () {
 		if (Input.GetButtonDown ("Fire1")) {
 			Debug.Log ("SWITCH");
+			AudioSource.PlayClipAtPoint(changeWorlds, transform.position);
+
 			isManActive = !isManActive;
 			man.GetComponent<Character>().activePlayer = isManActive;
 			woman.GetComponent<Character>().activePlayer = !isManActive;

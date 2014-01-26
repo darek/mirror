@@ -4,6 +4,8 @@ using System.Collections;
 public class MonsterEating : MonoBehaviour {
 	
 	public Animator animator;
+
+	public AudioClip monsterSound;
 	
 	// Use this for initialization
 	void Awake () {
@@ -24,6 +26,7 @@ public class MonsterEating : MonoBehaviour {
 		if (collider.gameObject.tag == "Player") {
 			collider.gameObject.GetComponent<Character>().Die();
 			animator.SetTrigger ("Eat");
+			AudioSource.PlayClipAtPoint(monsterSound, transform.position);
 		}
 	}
 }

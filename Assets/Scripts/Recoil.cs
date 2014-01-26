@@ -5,6 +5,7 @@ public class Recoil : MonoBehaviour {
 
 	public float recoilForceY = 200f;
 	public float recoilForceX = -150f;
+	public AudioClip ouchSound;
 
 	private GameController gameController;
 	private bool eventHandled = false;
@@ -17,17 +18,16 @@ public class Recoil : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D collider) {
 		Debug.Log ("recoil");
 		float currentTime = Time.time * 1000;
-		if(!eventHandled && currentTime - exitTime > 100f){
+		if (!eventHandled && currentTime - exitTime > 100f) {
 			if (collider.gameObject.tag == "Player") {
-				collider.gameObject.rigidbody2D.velocity = new Vector2 (0f, 0f);
+				collider.gameObject.rigidbody2D.velocity = Vector2.zero;
 				collider.gameObject.rigidbody2D.AddForce ((new Vector2 (recoilForceX, recoilForceY)));
 				collider.gameObject.GetComponent<Animator> ().SetBool ("Recoil", true);
-
-				if(collider.gameObject.GetComponent<Character>().activePlayer){
-					decreaseHeart();
+				if (collider.gameObject.GetComponent<Character> ().activePlayer) {
+					AudioSource.PlayClipAtPoint (ouchSound, transform.position);
+					decreaseHeart ();
 					eventHandled = true;
 				}
-
 			}
 		}
 	}
