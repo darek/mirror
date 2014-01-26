@@ -55,6 +55,8 @@ public class CharacterJump : MonoBehaviour {
 				secondJump = true;
 				rigidbody2D.AddForce(new Vector2(0f,(isMirrored ? -1 : 1 ) * jumpForce*1.5f));
 			}else{
+				float x = rigidbody2D.velocity.x>0?rigidbody2D.velocity.x:1;
+				rigidbody2D.velocity = new Vector2(x,0f);
 				rigidbody2D.AddForce(new Vector2(0f,(isMirrored ? -1 : 1 ) * jumpForce));
 			}
 			animator.SetBool("Grounded",false);
