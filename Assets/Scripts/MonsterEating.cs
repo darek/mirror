@@ -23,7 +23,7 @@ public class MonsterEating : MonoBehaviour {
 	}
 
 	public void OnTriggerEnter2D(Collider2D collider) {
-		if (collider.gameObject.tag == "Player") {
+		if (collider.gameObject.tag == "Player" && collider.gameObject.GetComponent<Character>().activePlayer) {
 			collider.gameObject.GetComponent<Character>().Die();
 			animator.SetTrigger ("Eat");
 			AudioSource.PlayClipAtPoint(monsterSound, transform.position);
