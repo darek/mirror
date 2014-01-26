@@ -20,8 +20,9 @@ public class Recoil : MonoBehaviour {
 		//if (!eventHandled) {
 			
 			if (collider.gameObject.tag == "Player") {
-				collider.gameObject.rigidbody2D.velocity = Vector2.zero;
-				collider.gameObject.rigidbody2D.AddForce ((new Vector2 (recoilForceX, recoilForceY)));
+				//collider.gameObject.rigidbody2D.velocity = Vector2.zero;
+				collider.gameObject.rigidbody2D.velocity = new Vector2(collider.gameObject.rigidbody2D.velocity.x,0f);
+				collider.gameObject.rigidbody2D.AddForce ((new Vector2 (collider.gameObject.rigidbody2D.velocity.x, recoilForceY)));
 				collider.gameObject.GetComponent<Animator> ().SetBool ("Recoil", true);
 				if (collider.gameObject.GetComponent<Character> ().activePlayer) {
 					AudioSource.PlayClipAtPoint (ouchSound, transform.position);

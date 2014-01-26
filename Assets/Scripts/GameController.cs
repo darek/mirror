@@ -35,18 +35,23 @@ public class GameController : MonoBehaviour {
 		Camera cam = Camera.main;
 		float height = 2f * cam.orthographicSize;
 		cameraWidth = height * cam.aspect;
-		Debug.Log ("whole: " + wholeDistance);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetButtonDown ("Fire1")) {
-			Debug.Log ("SWITCH");
 			AudioSource.PlayClipAtPoint(changeWorlds, transform.position);
 
 			isManActive = !isManActive;
 			man.GetComponent<Character>().activePlayer = isManActive;
 			woman.GetComponent<Character>().activePlayer = !isManActive;
+
+			GameObject character;
+			if(isManActive){
+				man.gameObject.rigidbody2D.velocity = new Vector2(woman.gameObject.rigidbody2D.velocity.x,-woman.gameObject.rigidbody2D.velocity.y);
+			}else{
+				woman.gameObject.rigidbody2D.velocity = new Vector2(man.gameObject.rigidbody2D.velocity.x,-man.gameObject.rigidbody2D.velocity.y);
+			}
 
 			mat *= Matrix4x4.Scale(new Vector3(-1, 1, 1));
 			Camera.main.projectionMatrix = mat;
