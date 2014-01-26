@@ -43,9 +43,11 @@ public class CreatorScript : MonoBehaviour {
 
 	public void create(Vector3 destroyedObjectPosition){
 		if(theLastOne){
-			Vector3 newlyCreatedPosition = new Vector3(theLastOne.transform.position.x + theLastOne.renderer.bounds.size.x, destroyedObjectPosition.y, destroyedObjectPosition.z);
+			GameObject newObjectPattern = chooseRandomPatternObject();
+			float paddingX = (theLastOne.renderer.bounds.size.x + newObjectPattern.renderer.bounds.size.x)/2f;
+			Vector3 newlyCreatedPosition = new Vector3(theLastOne.transform.position.x + paddingX, destroyedObjectPosition.y, destroyedObjectPosition.z);
 
-			GameObject newlyCreated = cloneGameObject(chooseRandomPatternObject(), newlyCreatedPosition);
+			GameObject newlyCreated = cloneGameObject(newObjectPattern, newlyCreatedPosition);
 
 			CreatorScript.CreateMirrored(newlyCreated);
 
