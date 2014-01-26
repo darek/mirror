@@ -9,7 +9,7 @@ public class Recoil : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.gameObject.tag == "Player") {
-			collider.gameObject.rigidbody2D.velocity = new Vector2 (0f, 0f);
+			collider.gameObject.rigidbody2D.velocity = Vector2.zero;
 			collider.gameObject.rigidbody2D.AddForce ((new Vector2 (recoilForceX, recoilForceY)));
 			collider.gameObject.GetComponent<Animator> ().SetBool ("Recoil", true);
 		}
