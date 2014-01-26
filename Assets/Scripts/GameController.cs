@@ -49,9 +49,13 @@ public class GameController : MonoBehaviour {
 			GameObject character;
 			if(isManActive){
 				man.gameObject.rigidbody2D.velocity = new Vector2(woman.gameObject.rigidbody2D.velocity.x,-woman.gameObject.rigidbody2D.velocity.y);
+				character = man;
 			}else{
 				woman.gameObject.rigidbody2D.velocity = new Vector2(man.gameObject.rigidbody2D.velocity.x,-man.gameObject.rigidbody2D.velocity.y);
+				character = woman;
 			}
+
+			Instantiate(GameObject.Find ("SwitchPlayerParticle"),character.transform.gameObject.transform.position,Quaternion.identity);
 
 			mat *= Matrix4x4.Scale(new Vector3(-1, 1, 1));
 			Camera.main.projectionMatrix = mat;
